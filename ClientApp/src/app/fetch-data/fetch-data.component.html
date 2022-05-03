@@ -1,0 +1,79 @@
+<h1 id="tableLabel">Users</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Age</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.firstname }}</td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.age }}</td>
+      <td>
+        <button class="btn btn-secondary" (click)="edit(content, user)" style="margin-right:10px">Edit</button>
+        <button class="btn btn-danger" (click)="delete(user)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button type="button" class="btn btn-primary" (click)="open(content)">Add User</button>
+</div>
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="userGroup">
+
+      <!-- <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+        </div>      
+      </div> -->
+
+      <div class="mb-3">
+        <label for="dateOfBirth">Firstname</label>
+        <div class="input-group">
+          <input type="email" formControlName="firstname" class="form-control" >
+        </div>      
+      </div>
+
+      <div class="mb-3">
+        <label for="dateOfBirth">Lastname</label>
+        <div class="input-group">
+          <input type="email" formControlName="lastname" class="form-control">
+        </div>      
+      </div>
+
+      <div class="mb-3">
+        <label for="dateOfBirth">Age</label>
+        <div class="input-group">
+          <input type="number" formControlName="age" class="form-control">
+        </div>      
+      </div>
+
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="save(content);">Save</button>
+  </div>
+</ng-template>
