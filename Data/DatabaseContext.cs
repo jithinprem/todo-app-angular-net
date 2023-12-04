@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using todo_app_angular_net.Models;
 
-// hi I have added a comment in Database context
+// I have added a comment in Database context
 namespace todo_app_angular_net.Data
 {
     public class DatabaseContext :DbContext
